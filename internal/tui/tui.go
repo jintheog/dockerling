@@ -358,10 +358,6 @@ func (m model) formatExerciseItem(index int, ex exercises.Exercise) string {
 		return appStyles.completedStyle.Render(symbolCompleted + " " + ex.Title)
 	}
 
-	if ex.DependsOn != "" && !m.progress.IsCompleted(ex.DependsOn) {
-		return appStyles.lockedStyle.Render(symbolLocked + " " + ex.Title)
-	}
-
 	return appStyles.listItemStyle.Render(ex.Title)
 }
 
@@ -400,11 +396,6 @@ func (m *model) moveCursorDown() tea.Cmd {
 // checkExercise initiates the check process for the current exercise
 func (m *model) checkExercise() tea.Cmd {
 	cur := m.exercises[m.cursor]
-
-	if cur.DependsOn != "" && !m.progress.IsCompleted(cur.DependsOn) {
-		m.statusMessage = appStyles.errorStyle.Render("Complete previous exercise first.")
-		return nil
-	}
 
 	m.isChecking = true
 	m.statusMessage = fmt.Sprintf("Verifying '%s'...", cur.Title)
