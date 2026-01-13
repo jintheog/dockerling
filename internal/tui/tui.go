@@ -461,7 +461,7 @@ func (m model) runCheck() tea.Cmd {
 		exerciseDir := filepath.Join(root, "exercises", cur.ID)
 		script := filepath.Join(exerciseDir, "check.sh")
 
-		cmd := exec.Command("/bin/bash", script)
+		cmd := exec.Command("bash", script)
 		cmd.Dir = exerciseDir // ← THIS IS THE FIX
 
 		err = cmd.Run()
