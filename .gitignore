@@ -1,3 +1,34 @@
 # bin/
 .dockerlings/
+.config
+.conf
 
+# PostgreSQL data directories
+**/pgdata/
+pgdata/
+
+# Log files
+*.log
+logs.txt
+*.log.*
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-*
+
+# Docker volumes and data
+**/volumes/
+volumes/

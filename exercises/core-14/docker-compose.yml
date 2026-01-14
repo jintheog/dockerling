@@ -1,0 +1,38 @@
+services:
+
+  # The web application service
+  web:
+    # Tells Compose to build an image from the Dockerfile in the 'app' directory
+    build: ./app
+    container_name: c14-web
+    ports:
+      - "8014:5000"
+    # The app.py script will use this to connect to the redis service
+    environment:
+      - REDIS_HOST=redis
+    # This ensures the redis service is started before the web service
+    depends_on:
+      - redis
+    
+    networks:
+      - c14-app-net
+
+  # The Redis database service
+  redis:
+    image: redis:alpine
+    container_name: c14-redis
+
+    # Mount the named volume
+    volumes:
+      - redis-data:/data
+    # Connect this service to the network
+    networks:
+      - c14-app-net
+
+  # Define the custom network at the top level
+networks:
+  c14-app-net:
+
+# Define the named volume at the top level
+volumes:
+  redis-data:

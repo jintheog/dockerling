@@ -17,3 +17,7 @@ set -e # Exit immediately if a command exits with a non-zero status.
 # Command: sleep 3600
 
 echo "Containers are starting..."
+
+docker run -d --name c10-db --network c10-network -e POSTGRES_PASSWORD=mysecretpassword postgres:14-alpine
+
+docker run -d --name c10-app --network c10-network busybox sleep 3600

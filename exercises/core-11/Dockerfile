@@ -9,6 +9,6 @@ COPY app.py .
 
 # The application inside the container listens on port 8080.
 # TODO: Add an instruction to inform Docker that the container listens on this port.
-
+EXPOSE 8080
 
 CMD ["python", "app.py"]
