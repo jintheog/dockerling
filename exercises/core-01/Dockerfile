@@ -2,4 +2,4 @@
 FROM busybox
 
 # TODO: Fix this command to output "Hello Docker"
-CMD ["echo", "Hello World"]
+CMD ["echo", "Hello Docker"]
